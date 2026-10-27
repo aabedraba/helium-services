@@ -1,0 +1,22 @@
+spec: v0.7
+
+runtime: base-compat:latest
+
+targets:
+  - kraftcloud/x86_64
+
+rootfs:
+  source: ./Dockerfile
+  format: erofs
+
+env:
+  DENO_DIR: /deno-dir/
+
+cmd:
+  - /bin/deno
+  - serve
+  - --config=/app/deno.json
+  - --allow-env=UBO_*
+  - --allow-net
+  - --cached-only
+  - /app/main.ts
